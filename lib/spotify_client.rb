@@ -36,6 +36,34 @@ module Spotify
       @connection.reset
     end
 
+    #############
+    def me_top_tracks(params={})
+      run(:get, "v1/me/top/tracks", [200], params)
+    end
+
+    def me_top_artists(params={})
+      run(:get, "v1/me/top/artists", [200], params)
+    end
+
+    def track_audio_features(track_id)
+      # GET https://api.spotify.com/v1/audio-features/{id}
+      run(:get, "v1/audio-features/#{track_id}", [200])
+    end
+
+    # GET https://api.spotify.com/v1/recommendations
+      def recommendations(params={})
+        params = {
+          seed_tracks: [
+            "3fwvJdf6z5peVKqaQS2LXj",
+            "0xtqnJ5BmVcILxKQvHFzDt"
+          ]
+        }
+      run(:get, "v1/recommendations", [200], params)
+    end
+    #############
+
+
+
     def me
       run(:get, '/v1/me', [200])
     end
