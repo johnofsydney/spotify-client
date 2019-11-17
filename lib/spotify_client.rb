@@ -65,6 +65,10 @@ module Spotify
       # run(:post, "/v1/users/#{user_id}/playlists/#{playlist_id}/tracks", [201], JSON.dump(params), false)
 
       # NOTE URL has changed - https://api.spotify.com/v1/playlists/{playlist_id}/tracks
+      p "v1/playlists/#{playlist_id}/tracks"
+      p JSON.dump(params)
+
+      
       run(:post, "v1/playlists/#{playlist_id}/tracks", [201], JSON.dump(params), false)
     end
     #############
