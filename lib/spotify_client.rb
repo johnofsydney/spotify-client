@@ -58,18 +58,11 @@ module Spotify
     end
 
     def add_tracks_to_playlist(playlist_id, uris = [], position = nil)
-      # params = { uris: Array.wrap(uris)[0..99].join(',') }# OLD
+      # NOTE URL has changed and uri array has changed also
       params = { uris: uris }
       if position
         params.merge!(position: position)
       end
-      # run(:post, "/v1/users/#{user_id}/playlists/#{playlist_id}/tracks", [201], JSON.dump(params), false)
-
-      # NOTE URL has changed - https://api.spotify.com/v1/playlists/{playlist_id}/tracks
-      p "v1/playlists/#{playlist_id}/tracks"
-      p JSON.dump(params)
-
-
       run(:post, "v1/playlists/#{playlist_id}/tracks", [201], JSON.dump(params), false)
     end
     #############
