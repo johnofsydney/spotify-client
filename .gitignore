@@ -26,3 +26,5 @@ doc/
 
 .ruby-version
 .ruby-gemset
+
+.vscode/
