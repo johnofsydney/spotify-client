@@ -37,6 +37,8 @@ module Spotify
     end
 
     #############
+    # added by me
+    #############
     def me_top_tracks(params={})
       run(:get, "v1/me/top/tracks", [200], params)
     end
@@ -52,12 +54,6 @@ module Spotify
 
     # GET https://api.spotify.com/v1/recommendations
       def recommendations(params={})
-        params = {
-          seed_tracks: [
-            "3fwvJdf6z5peVKqaQS2LXj",
-            "0xtqnJ5BmVcILxKQvHFzDt"
-          ]
-        }
       run(:get, "v1/recommendations", [200], params)
     end
     #############
@@ -131,7 +127,9 @@ module Spotify
       if position
         params.merge!(position: position)
       end
-      run(:post, "/v1/users/#{user_id}/playlists/#{playlist_id}/tracks", [201], JSON.dump(params), false)
+      # run(:post, "/v1/users/#{user_id}/playlists/#{playlist_id}/tracks", [201], JSON.dump(params), false)
+      # NOTE URL has changed - https://api.spotify.com/v1/playlists/{playlist_id}/tracks
+      run(:post, "/v1/playlists/{playlist_id}/tracks", [201], JSON.dump(params), false)
     end
 
     # Removes tracks from playlist
