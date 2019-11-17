@@ -58,7 +58,8 @@ module Spotify
     end
 
     def add_tracks_to_playlist(playlist_id, uris = [], position = nil)
-      params = { uris: Array.wrap(uris)[0..99].join(',') }
+      # params = { uris: Array.wrap(uris)[0..99].join(',') }# OLD
+      params = { uris: uris }
       if position
         params.merge!(position: position)
       end
@@ -68,7 +69,7 @@ module Spotify
       p "v1/playlists/#{playlist_id}/tracks"
       p JSON.dump(params)
 
-      
+
       run(:post, "v1/playlists/#{playlist_id}/tracks", [201], JSON.dump(params), false)
     end
     #############
